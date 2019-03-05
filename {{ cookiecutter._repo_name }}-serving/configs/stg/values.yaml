@@ -1,5 +1,5 @@
 app:
-  name: eduard-test-2
+  name: {{ cookiecutter._repo_name }}
   track: stable
   env: stg
 
