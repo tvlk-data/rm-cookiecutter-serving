@@ -1,5 +1,5 @@
 app:
-  name: {{ cookiecutter._repo_name }}
+  name: {{ cookiecutter.app_name }}
   track: stable
   env: prod
 
@@ -16,8 +16,8 @@ app:
     minReplica: 1
     targetCPUUtilizationPercentage: 60
 
-  # it will configure the configmap named: "{{ .Values.app.name }}-{{ .Values.app.track }}-envs"
-  # by default it already contains ENVIRONMENT={{.Values.app.env}}
+  # it will configure the configmap named: "<app.name>-<app.track>-envs"
+  # by default it already contains ENVIRONMENT=<app.env>
   configmap:
     data:
       SERVICE_OWNER: "eduard.chai@traveloka.com"
