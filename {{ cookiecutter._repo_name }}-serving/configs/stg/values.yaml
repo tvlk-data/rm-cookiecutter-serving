@@ -1,0 +1,34 @@
+app:
+  name: eduard-test-2
+  track: stable
+  env: stg
+
+  # the app's container resource spec
+  resources:
+    requests:
+      cpu: "50m"
+      memory: "32Mi"
+
+  # autoscale configuration
+  autoscale:
+    enabled: true
+    maxReplica: 10
+    minReplica: 1
+    targetCPUUtilizationPercentage: 60
+
+  # it will configure the configmap named: "{{ .Values.app.name }}-{{ .Values.app.track }}-envs"
+  # by default it already contains ENVIRONMENT={{.Values.app.env}}
+  configmap:
+    data:
+      SERVICE_OWNER: "eduard.chai@traveloka.com"
+
+meerkat:
+  baseImageName: asia.gcr.io/tvlk-data-mlplatform-dev/eduard-test-3-serving
+  imageTag: canary
+  containerPort: 80
+
+  endpoint:
+    host: eduard-test.endpoints.tvlk-data-mlplatform-dev.cloud.goog
+    svcAccName: rm-deployment-global-svc-acc
+    openapi:
+      version: 2019-02-26r1

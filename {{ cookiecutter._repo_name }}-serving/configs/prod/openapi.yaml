@@ -1,0 +1,84 @@
+---
+swagger: "2.0"
+info:
+  title: {{ cookiecutter._repo_name }}
+  description: "Production service created by Raring Meerkat Platform"
+  version: "2.0.0"
+host: "{{ cookiecutter._repo_name }}.endpoints.tvlk-data-mlplatform-prod.cloud.goog"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+schemes:
+  - "http"
+paths:
+  /info:
+    get:
+      description: "Return information about the service"
+      summary: ""
+      operationId: "info"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Check200"
+        500:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Check500"
+  /health:
+    get:
+      description: "Return whether the service is healthy or not"
+      summary: ""
+      operationId: "health"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Check200"
+        500:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Check500"
+  /predict:
+    get:
+      description: "Return prediction from the service"
+      summary: ""
+      operationId: "predict"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Check200"
+        500:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Check500"
+      security:
+        - api_key: []
+securityDefinitions:
+  api_key:
+    type: "apiKey"
+    name: "key"
+    in: "query"
+definitions:
+  Check200:
+    type: "object"
+    properties:
+      status_code:
+        type: integer
+      message:
+        type: string
+  Check500:
+    type: "object"
+    properties:
+      status_code:
+        type: integer
+      message:
+        type: string
