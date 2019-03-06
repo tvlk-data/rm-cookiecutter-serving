@@ -1,4 +1,12 @@
-ARG WEBSERVER_CONTAINER=gcr.io/tvlk-data-mlplatform-prod/rm-webserver:latest
-FROM $WEBSERVER_CONTAINER
+FROM continuumio/miniconda3:4.5.12
 
-COPY ./src .
+RUN apt-get update -y && apt-get install -y build-essential
+
+RUN conda install --quiet --yes python=3.6.5 && \
+    conda clean --all --yes
+
+COPY . .
+RUN pip install -r requirements.txt
+
+ENTRYPOINT [ "make" ]
+CMD [ "serve" ]
