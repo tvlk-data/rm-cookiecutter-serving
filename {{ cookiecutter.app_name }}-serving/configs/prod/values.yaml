@@ -20,7 +20,7 @@ app:
   # by default it already contains ENVIRONMENT=<app.env>
   configmap:
     data:
-      SERVICE_OWNER: "eduard.chai@traveloka.com"
+      SERVICE_OWNER: {{ cookiecutter.owner }}
 
 infra:
   virtualService:
@@ -29,7 +29,7 @@ infra:
     - raring-meerkat.tvlk-data.com
     # istio ingress gateway
     gateway: 
-    - raring-meerkat-gateway.data-ml-platform.svc.cluster.local
+    - raring-meerkat-gateway
 
   trafficRoute:
     blacklist:

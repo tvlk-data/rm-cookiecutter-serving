@@ -20,4 +20,4 @@ app:
   # by default it already contains ENVIRONMENT=<app.env>
   configmap:
     data:
-      SERVICE_OWNER: "eduard.chai@traveloka.com"
+      SERVICE_OWNER: {{ cookiecutter.owner }}
