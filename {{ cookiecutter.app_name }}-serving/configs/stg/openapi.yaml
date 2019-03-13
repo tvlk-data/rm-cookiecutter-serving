@@ -4,7 +4,7 @@ info:
   title: {{ cookiecutter.app_name }}
   description: "Staging service created by Raring Meerkat Platform"
   version: "2.0.0"
-host: "{{ cookiecutter.app_name }}.endpoints.tvlk-data-mlplatform-dev.cloud.goog"
+host: "{{ cookiecutter.app_name }}-stg.endpoints.tvlk-data-mlplatform-prod.cloud.goog"
 consumes:
   - "application/json"
 produces:
