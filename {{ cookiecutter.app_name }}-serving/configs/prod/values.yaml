@@ -41,14 +41,3 @@ infra:
     weight:
       stable: 100
       canary: 0
-
-meerkat:
-  baseImageName: asia.gcr.io/tvlk-data-mlplatform-dev/eduard-test-3-serving
-  imageTag: canary
-  containerPort: 80
-
-  endpoint:
-    host: eduard-test.endpoints.tvlk-data-mlplatform-dev.cloud.goog
-    svcAccName: rm-deployment-global-svc-acc
-    openapi:
-      version: 2019-02-26r1
