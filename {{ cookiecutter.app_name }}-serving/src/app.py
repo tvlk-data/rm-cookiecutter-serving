@@ -4,7 +4,7 @@ from flask import Flask, request
 from src.model import TrainedModel
 
 app = Flask(__name__)
-trainedModel = TrainedModel("/flaskr/serving/saved_model")
+trainedModel = TrainedModel("/saved_model")
 
 # get the predicted result from the model
 @app.route('/predict', methods=['POST'])
@@ -26,7 +26,7 @@ def info():
         return trainedModel.info()
     except AttributeError:
         try:
-            infoFilePath = os.path.join(os.path.dirname(__file__), 'serving/info.yaml')
+            infoFilePath = '/info.yaml'
             with open(infoFilePath, 'r') as infoFile:
                 data=infoFile.read().replace('\n','<br>')
                 return data
