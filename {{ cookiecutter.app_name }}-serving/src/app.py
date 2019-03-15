@@ -3,8 +3,11 @@ import os
 from flask import Flask, request
 from src.model import TrainedModel
 
+MODEL_PATH = "./saved_model"
+MODEL_INFO_PATH = "./info.yaml"
+
 app = Flask(__name__)
-trainedModel = TrainedModel("/saved_model")
+trainedModel = TrainedModel(MODEL_PATH)
 
 # get the predicted result from the model
 @app.route('/predict', methods=['POST'])
@@ -26,8 +29,7 @@ def info():
         return trainedModel.info()
     except AttributeError:
         try:
-            infoFilePath = '/info.yaml'
-            with open(infoFilePath, 'r') as infoFile:
+            with open(MODEL_INFO_PATH, 'r') as infoFile:
                 data=infoFile.read().replace('\n','<br>')
                 return data
         except (OSError, IOError) as e:
