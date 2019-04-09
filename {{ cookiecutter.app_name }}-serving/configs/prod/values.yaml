@@ -1,6 +1,5 @@
 app:
   name: {{ cookiecutter.app_name }}
-  track: stable
   env: prod
 
   # the app's container resource spec
