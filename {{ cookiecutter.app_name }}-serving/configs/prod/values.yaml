@@ -38,6 +38,3 @@ infra:
     retries:
       attempts: 3
       perTryTimeout: 1s
-    weight:
-      stable: 100
-      canary: 0
