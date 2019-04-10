@@ -22,7 +22,3 @@ class TrainedModel:
         # classification = tf.argmax(classification, 1)
         # return 'predicted result: ' + str(classification) + "( expected result = " + str(np.argmax(expected_result))
         pass
-
-    def health(self):
-        return '200 OK'
-        
