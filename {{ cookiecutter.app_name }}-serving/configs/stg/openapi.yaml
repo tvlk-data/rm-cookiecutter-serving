@@ -23,11 +23,11 @@ paths:
         200:
           description: "Success"
           schema:
-            $ref: "#/definitions/Check200"
+            $ref: "#/definitions/Common200"
         500:
-          description: "Error"
-          schema:
-            $ref: "#/definitions/Check500"
+          $ref: '#/responses/InternalServerError'
+        default:
+          $ref: '#/responses/UnknownError'
   /health:
     get:
       description: "Return whether the service is healthy or not"
@@ -37,13 +37,9 @@ paths:
         - "application/json"
       responses:
         200:
-          description: "Success"
-          schema:
-            $ref: "#/definitions/Check200"
+          description: OK
         500:
-          description: "Error"
-          schema:
-            $ref: "#/definitions/Check500"
+          $ref: '#/responses/InternalServerError'
   /predict:
     get:
       description: "Return prediction from the service"
@@ -55,11 +51,11 @@ paths:
         200:
           description: "Success"
           schema:
-            $ref: "#/definitions/Check200"
+            $ref: "#/definitions/Common200"
         500:
-          description: "Error"
-          schema:
-            $ref: "#/definitions/Check500"
+          $ref: '#/responses/InternalServerError'
+        default:
+          $ref: '#/responses/UnknownError'
       security:
         - api_key: []
 securityDefinitions:
@@ -68,17 +64,15 @@ securityDefinitions:
     name: "key"
     in: "query"
 definitions:
-  Check200:
-    type: "object"
-    properties:
-      status_code:
-        type: integer
-      message:
-        type: string
-  Check500:
-    type: "object"
-    properties:
-      status_code:
-        type: integer
-      message:
-        type: string
+  Common200:
+      type: "object"
+      properties:
+        status_code:
+          type: integer
+        data:
+          type: object
+responses:
+  InternalServerError:
+    description: Internal server error.
+  UnknownError:
+    description: Unknown error.
