@@ -20,4 +20,6 @@ fi
 
 read -p "Press [ENTER] to terminate this session..." key
 
+{% raw -%}
 docker stop $(docker ps -a -q --filter ancestor=swaggerapi/swagger-editor --format="{{.ID}}") > /dev/null
+{%- endraw %}
