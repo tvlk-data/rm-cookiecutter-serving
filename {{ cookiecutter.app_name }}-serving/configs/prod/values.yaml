@@ -21,6 +21,26 @@ app:
     data:
       SERVICE_OWNER: {{ cookiecutter.owner }}
 
+  # UNCOMMENT THIS TO CONFIGURE livenessProbe
+  # livenessProbe:
+  #   httpGet:
+  #     path: /health
+  #   initialDelaySeconds: 30
+  #   periodSeconds: 10
+  #   successThreshold: 1
+
+  # UNCOMMENT THIS TO CONFIGURE readinessProbe
+  # readinessProbe:
+  #   httpGet:
+  #     path: /health
+  #   failureThreshold: 10
+  #   initialDelaySeconds: 30
+  #   periodSeconds: 10
+  #   successThreshold: 1
+
+deployment:
+  timeout: 900 # type: int; desc: helm install timeout in seconds
+  
 infra:
   virtualService:
     # all request from this host will follow routing rules
@@ -29,11 +49,3 @@ infra:
     # istio ingress gateway
     gateway: 
     - raring-meerkat-gateway
-
-  trafficRoute:
-    blacklist:
-      enabled: false
-    timeout: 15s
-    retries:
-      attempts: 3
-      perTryTimeout: 1s
