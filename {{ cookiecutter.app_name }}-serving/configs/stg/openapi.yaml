@@ -41,7 +41,7 @@ paths:
         500:
           $ref: '#/responses/InternalServerError'
   /predict:
-    get:
+    post:
       description: "Return prediction from the service"
       summary: ""
       operationId: "predict"
