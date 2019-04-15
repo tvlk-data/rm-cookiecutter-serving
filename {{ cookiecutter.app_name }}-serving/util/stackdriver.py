@@ -5,7 +5,9 @@ def monitor(func_name):
     def decorator(func):
         @wraps(func)
         def wrapper():
-            logging.info(func_name)
+            handler = logging.StreamHandler()
+            handler.terminator = ""
+            logging.info("[RM-MONITORING] " + func_name)
             return func()
         return wrapper
     return decorator
