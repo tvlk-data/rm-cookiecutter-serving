@@ -2,12 +2,11 @@ import os
 
 from flask import Flask, request
 from src.model import TrainedModel
-from util.stackdriver import monitor, initStackdriverLogging
+from util.stackdriver import monitor
 
 MODEL_PATH = "./saved_model"
 MODEL_INFO_PATH = "./info.yaml"
 
-initStackdriverLogging()
 app = Flask(__name__)
 trainedModel = TrainedModel(MODEL_PATH)
 

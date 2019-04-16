@@ -1,10 +1,9 @@
+import google.cloud.logging
 import logging
 from functools import wraps
-import google.cloud.logging
 
-def initStackdriverLogging():
-    client = google.cloud.logging.Client()
-    client.setup_logging()
+client = google.cloud.logging.Client()
+client.setup_logging()
 
 def monitor(func_name):
     def decorator(func):
