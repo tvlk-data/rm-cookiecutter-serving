@@ -1,7 +1,7 @@
 ---
 swagger: "2.0"
 info:
-  title: {{ cookiecutter.app_name }}
+  title: {{ cookiecutter.app_name }}-stg
   description: "Staging service created by Raring Meerkat Platform"
   version: "2.0.0"
 host: "{{ cookiecutter.app_name }}-stg.endpoints.tvlk-data-mlplatform-prod.cloud.goog"
