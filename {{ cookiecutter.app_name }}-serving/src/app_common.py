@@ -53,9 +53,8 @@ def invalid_process(msg, filename=None):
 # check the server status
 @app.route('/health')
 def health():
-    HTTP_STATUS = HTTP_OK
     return format_response({
-        "status_code": HTTP_STATUS,
+        "status_code": HTTP_OK,
         "message": "HEALTHY"
     })
 
@@ -65,9 +64,9 @@ def health():
 def info():
     try:
         with open(MODEL_INFO_PATH, 'r') as infoFile:
-            data = infoFile.read().replace('\n','<br>')
+            data = infoFile.read()
         return format_response({
-            "status_code": HTTP_STATUS,
+            "status_code": HTTP_OK,
             "message": data
         })
     except (OSError, IOError) as e:
