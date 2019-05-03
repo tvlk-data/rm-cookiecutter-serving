@@ -1,4 +1,9 @@
-import os
+"""
+Main file to define the prediction flow of the ML model.
+Modify this file as you see fit.
+Refer to this link for the documentation:
+https://29022131.atlassian.net/wiki/spaces/DP/pages/1032225374/Model+Deployment
+"""
 
 from flask import Flask, request
 from src.app_common import app, invalid_input, invalid_process, \

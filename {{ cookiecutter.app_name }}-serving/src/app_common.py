@@ -1,3 +1,12 @@
+"""
+Collection of common helper functions. So that the developer can focus on modifying
+the service in the `app.py` only. Contains:
+- response formatter
+- common HTTP code
+- common invalid handler
+- health check & service info router
+"""
+
 from flask import Flask, jsonify, request
 
 
