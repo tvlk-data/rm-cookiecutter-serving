@@ -1,3 +1,4 @@
 type: serving
 name: {{ cookiecutter.app_name }}
 owner: {{ cookiecutter.owner }}
+slackChannel: data-jenkins-hub
