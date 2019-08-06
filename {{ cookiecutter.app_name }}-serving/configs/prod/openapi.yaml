@@ -40,6 +40,18 @@ paths:
           description: OK
         500:
           $ref: '#/responses/InternalServerError'
+  /status:
+    get:
+      description: "Return whether the service is ready"
+      summary: ""
+      operationId: "status"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: OK
+        500:
+          $ref: '#/responses/InternalServerError'
   /predict:
     post:
       description: "Return prediction from the service"
