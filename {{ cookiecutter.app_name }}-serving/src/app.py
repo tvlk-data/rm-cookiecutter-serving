@@ -2,7 +2,6 @@ import os
 
 from flask import Flask, request
 from src.model import TrainedModel
-from util.stackdriver import monitor
 
 MODEL_PATH = "./saved_model"
 MODEL_INFO_PATH = "./info.yaml"
@@ -12,22 +11,24 @@ trainedModel = TrainedModel(MODEL_PATH)
 
 # get the predicted result from the model
 @app.route('/predict', methods=['POST'])
-@monitor('predict')
 def predict():
     try:
         return trainedModel.predict(request)
     except AttributeError:
         return "[WARNING] 'predict' method has not been implemented in the wrapper"
 
-# check the server status
+# check the server health
 @app.route('/health')
-@monitor('health')
 def health():
     return "200 OK"
 
+# check the server status
+@app.route('/status')
+def status():
+    return "STATUS OK"
+
 # get the metadata of the model
 @app.route('/info')
-@monitor('info')
 def info():
     try:
         return trainedModel.info()

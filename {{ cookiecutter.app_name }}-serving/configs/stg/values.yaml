@@ -22,21 +22,21 @@ app:
       SERVICE_OWNER: {{ cookiecutter.owner }}
 
   # UNCOMMENT THIS TO CONFIGURE livenessProbe
-  # livenessProbe:
-  #   httpGet:
-  #     path: /health
-  #   initialDelaySeconds: 30
-  #   periodSeconds: 10
-  #   successThreshold: 1
+  livenessProbe:
+    httpGet:
+      path: /health
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    successThreshold: 1
 
   # UNCOMMENT THIS TO CONFIGURE readinessProbe
-  # readinessProbe:
-  #   httpGet:
-  #     path: /health
-  #   failureThreshold: 10
-  #   initialDelaySeconds: 30
-  #   periodSeconds: 10
-  #   successThreshold: 1
+  readinessProbe:
+    httpGet:
+      path: /status
+    failureThreshold: 10
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    successThreshold: 1
 
 deployment:
   timeout: 900 # type: int; desc: helm install timeout in seconds
