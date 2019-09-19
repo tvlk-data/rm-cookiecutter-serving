@@ -15,11 +15,20 @@ app:
     minReplica: 1
     targetCPUUtilizationPercentage: 60
 
+  # vault: https://github.com/tvlk-data/rm-helm-charts/blob/master/rm-app/values.yaml#L63-L67
+  vault:
+    vaultAddress: "https://vault.svc.k8s.tvlk-data.com"
+    vaultRole: "default"
+    vaultSkipVerify: "false"
+    vaultAgent: "false"
+    vaultPath: "tvlk-data-prod"
+
   # it will configure the configmap named: "<app.name>-<app.track>-envs"
   # by default it already contains ENVIRONMENT=<app.env>
   configmap:
     data:
       SERVICE_OWNER: {{ cookiecutter.owner }}
+      VAULT_INIT: vault:secret/data/tvlk-data-ml-platform/init#INIT
 
   # UNCOMMENT THIS TO CONFIGURE livenessProbe
   livenessProbe:
