@@ -17,6 +17,7 @@ app:
 
   # vault: https://github.com/tvlk-data/rm-helm-charts/blob/master/rm-app/values.yaml#L63-L67
   vault:
+    enabled: "true"
     vaultAddress: "https://vault.svc-dev.k8s.tvlk-data.com"
     vaultRole: "default"
     vaultSkipVerify: "false"
