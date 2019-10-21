@@ -48,5 +48,12 @@ app:
     periodSeconds: 10
     successThreshold: 1
 
+# infra:
+#   trafficRoute:
+#     timeout: 60s          # Service timeout before sending timeout error to client
+#     retries:
+#       attempts: 3         # Retry the service request if error occured
+#       perTryTimeout: 1s   # NOTES: THIS CONFIG OVERRIDE TIMEOUT CONFIG ABOVE. Service timeout before sending timeout error to client
+
 deployment:
   timeout: 900 # type: int; desc: helm install timeout in seconds
