@@ -1,7 +1,21 @@
+import logging
 import os
 
 from flask import Flask, request
 from src.model import TrainedModel
+
+# For more information: https://github.com/tvlk-data/rm-sdk-logging
+from rm_sdk.logging import logger
+
+# Setup log level
+# By default, our kubernetes cluster will inject ENVIRONMENT value to our services:
+#   - `stg` for staging cluster
+#   - `prod` for production cluster
+ENV = os.getenv("ENVIRONMENT", "dev")
+if ENV == "dev":
+    logger.setLevel(logging.DEBUG)
+else:
+    logger.setLevel(logging.INFO)
 
 MODEL_PATH = "./saved_model"
 MODEL_INFO_PATH = "./info.yaml"
@@ -31,14 +45,16 @@ def status():
 @app.route('/info')
 def info():
     try:
+        logger.info("/info is called!")
         return trainedModel.info()
     except AttributeError:
         try:
             with open(MODEL_INFO_PATH, 'r') as infoFile:
-                data=infoFile.read().replace('\n','<br>')
+                data = infoFile.read().replace('\n', '<br>')
                 return data
         except (OSError, IOError) as e:
             return str(e)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
