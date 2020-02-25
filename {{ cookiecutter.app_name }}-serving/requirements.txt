@@ -1,3 +1,5 @@
+# For more information: https://github.com/tvlk-data/rm-sdk-logging
+https://storage.googleapis.com/public-python-wheels/rm-sdk-logging/releases/v0.5.3/rm_sdk_logging-stable-py3-none-any.whl
+
 Flask==1.0.2
 gunicorn==19.9.0
-google-cloud-logging==1.10.0

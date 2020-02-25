@@ -1,16 +1,13 @@
-FROM continuumio/miniconda3:4.6.14
+FROM python:3.6.9-slim
 
-RUN apt-get update -y && apt-get install -y build-essential
-
-RUN conda install --quiet --yes python=3.6.5 && \
-    conda clean --all --yes
-
-WORKDIR $HOME/serving
-
-COPY requirements.txt $HOME/serving
-RUN pip install -r requirements.txt
+RUN apt-get update && apt-get install -y \
+    make \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY . $HOME/serving
+WORKDIR $HOME/serving
+RUN pip install -r requirements.txt
 
 ENTRYPOINT [ "make" ]
 CMD [ "serve" ]
